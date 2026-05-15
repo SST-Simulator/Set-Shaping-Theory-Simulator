@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Set shaping theory Simulator">
+    <title>Set Shaping Theory</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]]
+        },
+        svg: {
+          fontCache: "global"
+        }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <main>
+      <section id="home-view" class="view landing-view" aria-label="Set Shaping Theory home">
+        <h1>Set Shaping Theory</h1>
+        <p class="landing-motto"><em>Structure is more important than input size</em></p>
+        <button class="landing-link" type="button" data-view-target="improve-view">
+          Help us improve this research site
+        </button>
+        <button class="landing-link" type="button" data-view-target="tables-view">
+          Sequence compression using correspondence tables method
+        </button>
+        <button class="landing-link" type="button" data-view-target="approx-view">
+          Compression of long sequences using approximate method
+        </button>
+        <button class="landing-link" type="button" data-view-target="graphy-view">
+          Application of Set Shaping Theory to graphs using the correspondence table method
+        </button>
+        <button class="landing-link" type="button" data-view-target="random-graph-view">
+          Application of Set Shaping Theory to graphs using an approximate method
+        </button>
+        <button class="landing-link" type="button" data-view-target="stego-view">
+          Steganography
+        </button>
+      </section>
+
+      <section id="improve-view" class="view app-view" aria-label="Help us improve this research site" hidden>
+        <nav class="topbar" aria-label="Section navigation">
+          <button class="back-link" type="button" data-view-target="home-view">Back</button>
+          <p>Help us improve this research site</p>
+        </nav>
+
+        <section class="intro">
+          <p class="eyebrow">Set Shaping Theory</p>
+          <h2>Help us improve this research site</h2>
+        </section>
+
+        <section class="results note-section" aria-label="Research collaboration">
+          <div class="landing-callout">
+            <p>
+              Set Shaping Theory can be applied to many research fields and has
+              significant potential. To make the simulations as meaningful as
+              possible, we need experts in the relevant research fields who can help define the most
+              relevant problems, methods, metrics, and practical interpretations.
+            </p>
+            <p>
+              What we are observing is that larger but more structured inputs can
+              improve performance. In other words, input structure is more
+              critical than input size.
+            </p>
+            <p>The general research methodology is as follows:</p>
+            <ol>
+              <li>Select a problem and its most widely used solution method.</li>
+              <li>Define a metric or function to measure the method's performance.</li>
+              <li>Apply SST to evaluate whether this performance improves on average.</li>
+              <li>Consult experts in the relevant research fields to determine whether the improvement is practically significant.</li>
+            </ol>
+            <p>
+              If SST provides an improvement, it can be applied directly to the
+              input without changing the underlying method itself. Set Shaping
+              Theory is not in competition with existing theories or algorithms:
+              it aims to improve results by producing more structured inputs.
+            </p>
+            <p>
+              As computers become increasingly powerful, the calculations required
+              for this approach will become more accessible, making this type of
+              application progressively more widespread.
+            </p>
+            <p class="landing-final-claim">
+              <em>In the future, the resolution of problems will use only expanded and more structured inputs.</em>
+            </p>
+            <div class="contact-panel" aria-label="Contact us">
+              <h3>Contact us</h3>
+              <p>
+                <a href="mailto:aida.koch445@outlook.com">aida.koch445@outlook.com</a><br>
+                <a href="mailto:Christian.Schmidt55u@gmail.com">Christian.Schmidt55u@gmail.com</a><br>
+                <a href="mailto:alix.petitaus@gmail.com">alix.petitaus@gmail.com</a>
+              </p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section id="tables-view" class="view app-view" aria-label="Correspondence tables method" hidden>
+        <nav class="topbar" aria-label="Section navigation">
+          <button class="back-link" type="button" data-view-target="home-view">Back</button>
+          <p>Sequence compression using correspondence tables method</p>
+        </nav>
+
+        <section class="intro">
+          <p class="eyebrow">Set shaping theory</p>
+          <h2>Build the correspondence table</h2>
+        </section>
+
+        <section class="workspace" aria-label="Parameters and results">
+          <form id="shaping-form" class="controls">
+            <label>
+              <span>Alphabet size A</span>
+              <input
+                id="alphabet"
+                name="alphabet"
+                type="number"
+                min="2"
+                value="5"
+                aria-describedby="alphabet-help"
+              >
+              <small id="alphabet-help">Enter only the number of symbols. Symbols are generated as 0, 1, ..., A-1.</small>
+            </label>
+
+            <label>
+              <span>Length N</span>
+              <input id="length-n" name="length-n" type="number" min="1" max="14" value="4">
+            </label>
+
+            <label>
+              <span>Parameter K</span>
+              <input id="length-k" name="length-k" type="number" min="0" max="14" value="2">
+            </label>
+
+            <label>
+              <span>Computation limit</span>
+              <input id="max-expanded" name="max-expanded" type="number" min="1" value="250000">
+              <small>Maximum number of expanded \(A^{N+K}\) sequences to generate.</small>
+            </label>
+
+            <button type="submit">Compute mapping</button>
+          </form>
+
+          <div class="summary-panel" aria-live="polite">
+            <dl id="summary">
+              <div>
+                <dt>Source sequences</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Expanded sequences</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Mappings created</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Ready</dd>
+              </div>
+            </dl>
+            <div id="tables-progress" class="progress-bar" role="progressbar" aria-label="Table computation progress" hidden>
+              <span></span>
+              <strong>0%</strong>
+            </div>
+            <button id="download-xls" type="button" disabled>Download Excel</button>
+          </div>
+        </section>
+
+        <section class="results" aria-label="Correspondence table preview">
+          <div class="results-heading">
+            <div>
+              <p class="eyebrow">Preview</p>
+              <h2>Ordered correspondences</h2>
+            </div>
+            <p id="preview-note">Compute a table to see the results.</p>
+          </div>
+
+          <div class="metrics" id="tables-metrics">
+            <article>
+              <span>Average \(N H_0(s)\)</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Average \((N+K)H_0(f(s))\)</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Average gain (bits)</span>
+              <strong>-</strong>
+            </article>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Sequence \(N\)</th>
+                  <th>\(N H_0\)</th>
+                  <th>Sequence \(N+K\)</th>
+                  <th>\((N+K)H_0\)</th>
+                </tr>
+              </thead>
+              <tbody id="mapping-body">
+                <tr>
+                  <td colspan="5">No result has been computed yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Meaning of empirical entropy score">
+          <div class="slide-panel">
+            <img src="assets/why-nh0-slide.png" alt="Why N H0(s) is important slide">
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Recommended articles">
+          <div class="bibliography-panel">
+            <h2>Recommended articles</h2>
+            <ol>
+              <li>
+                S. Kozlov, “Introduction to set shaping theory,” arXiv:2111.08369, 2021.
+                <a href="https://arxiv.org/abs/2111.08369" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2111.08369</a>
+              </li>
+              <li>
+                S. Kozlov, “Use of set shaping theory in the development of locally testable codes,” arXiv:2202.13152, 2022.
+                <a href="https://arxiv.org/abs/2202.13152" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2202.13152</a>
+              </li>
+              <li>
+                PowerPoint presentation, “Set Shaping Theory.”
+                <a href="https://www.academia.edu/61997612/Set_Shaping_Theory_the_future_of_information_theory_" target="_blank" rel="noopener noreferrer">https://www.academia.edu/61997612/Set_Shaping_Theory_the_future_of_information_theory_</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+      </section>
+
+      <section id="approx-view" class="view app-view" aria-label="Approximate method" hidden>
+        <nav class="topbar" aria-label="Section navigation">
+          <button class="back-link" type="button" data-view-target="home-view">Back</button>
+          <p>Compression of long sequences using approximate method</p>
+        </nav>
+
+        <section class="intro">
+          <p class="eyebrow">Set Shaping Theory</p>
+          <h2>Application of Set Shaping Theory to long sequences</h2>
+          <p>
+            Generate \(H\) uniformly random source sequences, test every \(A^K\)
+            deterministic length-\(N\) modular modifier, and keep the transformed
+            sequence with the lowest empirical entropy score.
+          </p>
+          <p>
+            The comparison uses \(N H_0(s)\) and \((N+K)H_0(f(s))\), where \(H_0\) is the
+            empirical entropy computed from the symbol frequencies in the
+            sequence. With the approximate method the gain is visible when
+            \(A \ge 5\); with correspondence tables it is already visible when
+            \(A \ge 3\).
+          </p>
+        </section>
+
+        <section class="workspace" aria-label="Approximate method parameters and results">
+          <form id="approx-form" class="controls">
+            <label>
+              <span>Alphabet size A</span>
+              <input
+                id="approx-alphabet"
+                name="approx-alphabet"
+                type="number"
+                min="2"
+                value="5"
+                aria-describedby="approx-alphabet-help"
+              >
+              <small id="approx-alphabet-help">Enter only the number of symbols. Symbols are generated as 0, 1, ..., A-1.</small>
+            </label>
+
+            <label>
+              <span>Length N</span>
+              <input id="approx-length-n" name="approx-length-n" type="number" min="1" value="1000">
+            </label>
+
+            <label>
+              <span>Random sequences H</span>
+              <input id="approx-samples-h" name="approx-samples-h" type="number" min="1" value="100">
+            </label>
+
+            <label>
+              <span>Parameter K</span>
+              <input id="approx-length-k" name="approx-length-k" type="number" min="0" value="3">
+            </label>
+
+            <label>
+              <span>Transformation limit</span>
+              <input id="approx-max-candidates" name="approx-max-candidates" type="number" min="1" value="1000000">
+              <small>Maximum total number of candidate transformations \(H A^K\).</small>
+            </label>
+
+            <button type="submit">Run approximation</button>
+          </form>
+
+          <div class="summary-panel" aria-live="polite">
+            <dl id="approx-summary">
+              <div>
+                <dt>Random sequences</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Transforms per sequence</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Average gain (bits)</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Ready</dd>
+              </div>
+            </dl>
+            <div id="approx-progress" class="progress-bar" role="progressbar" aria-label="Approximation progress" hidden>
+              <span></span>
+              <strong>0%</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="results" aria-label="Approximate method results">
+          <div class="results-heading">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2>Average score comparison</h2>
+            </div>
+            <p id="approx-note">Run the approximation to see the average values.</p>
+          </div>
+
+          <div class="metrics" id="approx-metrics">
+            <article>
+              <span>Average \(N H_0(s)\)</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Average best \((N+K)H_0(f(s))\)</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Average gain (bits)</span>
+              <strong>-</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Meaning of empirical entropy score">
+          <div class="slide-panel">
+            <img src="assets/why-nh0-slide.png" alt="Why N H0(s) is important slide">
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Transformation algorithm credit">
+          <div class="credit-panel">
+            <p>
+              This program uses the algorithm developed by Glen Tankersley to
+              perform the transformation:
+              <a href="https://github.com/gotankersley/entropic-transform" target="_blank" rel="noopener noreferrer">https://github.com/gotankersley/entropic-transform</a>.
+            </p>
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Recommended articles">
+          <div class="bibliography-panel">
+            <h2>Recommended articles</h2>
+            <ol>
+              <li>
+                Lang, Mai and Lewis, Logan, “Beyond Shannon: Geometric Transformations and the Foundations of Set Shaping Theory,” November 21, 2025.
+                <a href="https://ssrn.com/abstract=5781442" target="_blank" rel="noopener noreferrer">https://ssrn.com/abstract=5781442</a>
+              </li>
+              <li>
+                Biereagu, Sochima. 2023. “Introducing the Role of Shaping Order K in Set Shaping Theory.” AfricArXiv. October 12. doi:10.31730/osf.io/ywmsr.
+                <a href="https://africarxiv.ubuntunet.net/items/bca53a72-0fd8-477f-bb5e-19059847c2d4" target="_blank" rel="noopener noreferrer">https://africarxiv.ubuntunet.net/items/bca53a72-0fd8-477f-bb5e-19059847c2d4</a>
+              </li>
+              <li>
+                A. Koch and A. Petit, “Set Shaping Theory and the Foundations of RedundancyFree Testable Codes,” arXiv:2507.03444, 2025.
+                <a href="https://arxiv.org/abs/2507.03444" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2507.03444</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+      </section>
+
+      <section id="graphy-view" class="view app-view" aria-label="Graphy method" hidden>
+        <nav class="topbar" aria-label="Section navigation">
+          <button class="back-link" type="button" data-view-target="home-view">Back</button>
+          <p>Application of Set Shaping Theory to graphs using the correspondence table method</p>
+        </nav>
+
+        <section class="intro">
+          <p class="eyebrow">Set Shaping Theory</p>
+          <h2>Set Shaping Theory applied to graphs using the correspondence table method</h2>
+          <p>
+            Enumerate all simple labeled graphs with n nodes and m edges, then
+            enumerate the expanded set with n+k nodes and the same number of
+            edges. The program computes \(H_d\), \(H_{\mathrm{gap}}\), and
+            \(S_J\) for every graph.
+          </p>
+          <p>
+            The selected subset contains the same number of graphs as the
+            original set. For \(H_d\) and \(H_{\mathrm{gap}}\) it is chosen from
+            the expanded set by minimum entropy; for similarity it is chosen by maximum
+            similarity.
+          </p>
+        </section>
+
+        <section class="workspace" aria-label="Graphy parameters and results">
+          <form id="graphy-form" class="controls">
+            <label>
+              <span>Original nodes n</span>
+              <input id="graphy-n" name="graphy-n" type="number" min="1" value="7">
+            </label>
+
+            <label>
+              <span>Expansion k</span>
+              <input id="graphy-k" name="graphy-k" type="number" min="0" value="1">
+            </label>
+
+            <label>
+              <span>Edges m</span>
+              <input id="graphy-m" name="graphy-m" type="number" min="0" value="7">
+            </label>
+
+            <label>
+              <span>Enumeration limit</span>
+              <input id="graphy-max-graphs" name="graphy-max-graphs" type="number" min="1" value="1500000">
+              <small>Maximum total graphs to enumerate across both graph sets.</small>
+            </label>
+
+            <button type="submit">Run graphy</button>
+          </form>
+
+          <div class="summary-panel" aria-live="polite">
+            <dl id="graphy-summary">
+              <div>
+                <dt>Original graphs</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Expanded graphs</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Score difference \(H_d\)</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Ready</dd>
+              </div>
+            </dl>
+            <div id="graphy-progress" class="progress-bar" role="progressbar" aria-label="Graphy progress" hidden>
+              <span></span>
+              <strong>0%</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="results" aria-label="Graphy results">
+          <div class="results-heading">
+            <div>
+              <p class="eyebrow">Results</p>
+              <h2>Graph metric comparison</h2>
+            </div>
+            <p id="graphy-note">Run graphy to compare the two graph sets with \(H_d\), \(H_{\mathrm{gap}}\), and \(S_J\).</p>
+          </div>
+
+          <div class="formula-panel">
+            <p>
+              <strong>Degree entropy.</strong>
+              <span class="math-line">\[
+                H_d = -\sum_{q \ge 0} p_d(q)\log_2 p_d(q)
+              \]</span>
+            </p>
+            <p>
+              <strong>Adjacency-gap entropy.</strong>
+              <span class="math-line">\[
+                H_{\mathrm{gap}} = -\sum_{g \ge 1} p_{\mathrm{gap}}(g)\log_2 p_{\mathrm{gap}}(g)
+              \]</span>
+            </p>
+            <p>
+              <strong>Similarity.</strong>
+              <span class="math-line">\[
+                S_J = \frac{1}{\binom{n}{2}}
+                \sum_{1 \le i < j \le n}
+                \frac{\left|N(i)\cap N(j)\right|}{\left|N(i)\cup N(j)\right|}
+              \]</span>
+            </p>
+            <p>
+              <strong>Scores.</strong>
+              <span class="math-line">\[
+                \operatorname{mean}(nH_d),\quad
+                \operatorname{mean}((n+k)H_d),\quad
+                \operatorname{mean}(nH_{\mathrm{gap}}),\quad
+                \operatorname{mean}((n+k)H_{\mathrm{gap}}),\quad
+                \operatorname{mean}(S_J)
+              \]</span>
+            </p>
+          </div>
+
+          <div class="metrics" id="graphy-metrics">
+            <article>
+              <span>Mean \(H_d\) original</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \(H_d\) transformed</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>\(H_d\) difference</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \(nH_d\) original</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \((n+k)H_d\) transformed</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Score difference \(H_d\)</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \(H_{\mathrm{gap}}\) original</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \(H_{\mathrm{gap}}\) transformed</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>\(H_{\mathrm{gap}}\) difference</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \(nH_{\mathrm{gap}}\) original</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \((n+k)H_{\mathrm{gap}}\) transformed</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Score difference \(H_{\mathrm{gap}}\)</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \(S_J\) original</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \(S_J\) transformed</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Similarity gain</span>
+              <strong>-</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Graphy slide 2">
+          <div class="slide-panel">
+            <img src="assets/graphy-slide-2.png" alt="Set Shaping Theory graph slide">
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Recommended articles">
+          <div class="bibliography-panel">
+            <h2>Recommended articles</h2>
+            <ol>
+              <li>
+                Petit, Alix and Vdberg, Adrain and Schmidt, Christian, “Set Shaping Theory Applied to Graphs: Reducing Average Graph Entropy via Dimensional Expansion,” March 07, 2026.
+                <a href="https://ssrn.com/abstract=6364578" target="_blank" rel="noopener noreferrer">https://ssrn.com/abstract=6364578</a>
+              </li>
+            </ol>
+          </div>
+        </section>
+      </section>
+
+      <section id="random-graph-view" class="view app-view" aria-label="Approximate graph degree method" hidden>
+        <nav class="topbar" aria-label="Section navigation">
+          <button class="back-link" type="button" data-view-target="home-view">Back</button>
+          <p>Application of Set Shaping Theory to graphs using an approximate method</p>
+        </nav>
+
+        <section class="intro">
+          <p class="eyebrow">Set Shaping Theory</p>
+          <h2>Application of Set Shaping Theory to graphs using an approximate method</h2>
+          <p>
+            Generate \(H\) random simple graphs with \(N_d\) nodes and \(A_r\)
+            edges, or read a graph from file. For each graph, the SST
+            transformation expands the graph to \(N_d+K\) nodes.
+          </p>
+        </section>
+
+        <section class="workspace" aria-label="Random graph parameters and results">
+          <form id="random-graph-form" class="controls">
+            <label>
+              <span>Graph source</span>
+              <select id="random-graph-source" name="random-graph-source">
+                <option value="random">Generate random graphs</option>
+                <option value="file">Read graph from file</option>
+              </select>
+              <small><a href="#random-graph-format">Accepted graph file format</a></small>
+            </label>
+
+            <label id="random-graph-file-label" hidden>
+              <span>Graph file</span>
+              <input id="random-graph-file" name="random-graph-file" type="file" accept=".txt,.csv,.edges,.edgelist">
+              <small>In file mode, \(N_d\) and \(A_r\) are read from the file and \(H\) is ignored.</small>
+            </label>
+
+            <label id="random-graph-nd-label">
+              <span>Nodes \(N_d\)</span>
+              <input id="random-graph-nd" name="random-graph-nd" type="number" min="1" value="20">
+            </label>
+
+            <label id="random-graph-ar-label">
+              <span>Edges \(A_r\)</span>
+              <input id="random-graph-ar" name="random-graph-ar" type="number" min="0" value="20">
+            </label>
+
+            <label id="random-graph-h-label">
+              <span>Random graphs \(H\)</span>
+              <input id="random-graph-h" name="random-graph-h" type="number" min="1" value="100">
+            </label>
+
+            <label id="random-graph-k-label">
+              <span>Parameter \(K\)</span>
+              <input id="random-graph-k" name="random-graph-k" type="number" min="0" value="2">
+            </label>
+
+            <label id="random-graph-max-transforms-label">
+              <span>Transformation limit</span>
+              <input id="random-graph-max-transforms" name="random-graph-max-transforms" type="number" min="1" value="1000000">
+              <small>Maximum total number of candidate transformations \(H N_d^2\).</small>
+            </label>
+
+            <button type="submit">Run SST transformation</button>
+          </form>
+
+          <div class="summary-panel" aria-live="polite">
+            <dl id="random-graph-summary">
+              <div>
+                <dt>Input graphs</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Transforms per graph</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Average \(H_d\) gain</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Ready</dd>
+              </div>
+            </dl>
+            <div id="random-graph-progress" class="progress-bar" role="progressbar" aria-label="Random graph progress" hidden>
+              <span></span>
+              <strong>0%</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="results" aria-label="Random graph results">
+          <div class="results-heading">
+            <div>
+              <h2>Results</h2>
+            </div>
+            <p id="random-graph-note">Run the simulation to compare the original random graphs with the SST-transformed graphs.</p>
+          </div>
+
+          <div class="formula-panel">
+            <p>
+              <strong>Degree entropy.</strong>
+              <span class="math-line">\[
+                H_d = -\sum_{q \ge 0} p_d(q)\log_2 p_d(q)
+              \]</span>
+            </p>
+            <p>
+              <strong>Adjacency-gap entropy.</strong>
+              <span class="math-line">\[
+                H_{\mathrm{gap}} = -\sum_{g \ge 1} p_{\mathrm{gap}}(g)\log_2 p_{\mathrm{gap}}(g)
+              \]</span>
+            </p>
+            <p>
+              <strong>Similarity.</strong>
+              <span class="math-line">\[
+                S_J =
+                \frac{1}{\binom{N_d}{2}}
+                \sum_{1 \le i < j \le N_d}
+                \frac{\left|N(i)\cap N(j)\right|}{\left|N(i)\cup N(j)\right|}
+              \]</span>
+            </p>
+          </div>
+
+          <div class="metrics" id="random-graph-metrics">
+            <article>
+              <span>Mean \(H_d\) original</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean best \(H_d\) transformed</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>\(H_d\) gain</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \(H_{\mathrm{gap}}\) original</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean best \(H_{\mathrm{gap}}\) transformed</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>\(H_{\mathrm{gap}}\) gain</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean \(S_J\) original</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Mean best \(S_J\) transformed</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Similarity gain</span>
+              <strong>-</strong>
+            </article>
+          </div>
+        </section>
+
+        <section id="random-graph-format" class="results note-section" aria-label="Accepted graph file format">
+          <div class="formula-panel">
+            <p>
+              <strong>Accepted graph file format</strong>
+              Use a text edge list. Each non-empty line contains one undirected
+              edge as two node indexes, separated by spaces, commas, or
+              semicolons.
+            </p>
+            <p>
+              Comments start with <code>#</code>. Node indexes may be zero-based
+              or one-based. The optional line <code>nodes: 20</code> can be used
+              to include isolated nodes.
+            </p>
+            <p>
+              Example:
+            </p>
+            <pre><code>nodes: 5
+1 2
+1 3
+2 4
+4 5</code></pre>
+            <button id="download-graph-example" class="download-button" type="button">Download example graph file</button>
+          </div>
+        </section>
+
+        <section id="random-graph-loaded-preview-section" class="results note-section" aria-label="Loaded graph preview" hidden>
+          <div class="results-heading">
+            <div>
+              <p class="eyebrow">Loaded graph</p>
+              <h2>Graph read from file and transformed graphs</h2>
+            </div>
+            <p id="random-graph-loaded-note">The loaded graph will appear here after running the file mode.</p>
+          </div>
+          <div id="random-graph-loaded-preview" class="graph-preview"></div>
+        </section>
+
+        <section class="results note-section" aria-label="Approximate graph slide 2">
+          <div class="slide-panel">
+            <img src="assets/graphy-slide-2.png" alt="Set Shaping Theory graph slide">
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Transformation algorithm credit">
+          <div class="credit-panel">
+            <p>
+              This program uses the algorithm developed by Glen Tankersley to
+              perform the transformation:
+              <a href="https://github.com/gotankersley/entropic-transform" target="_blank" rel="noopener noreferrer">https://github.com/gotankersley/entropic-transform</a>.
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <section id="stego-view" class="view app-view" aria-label="Steganography method" hidden>
+        <nav class="topbar" aria-label="Section navigation">
+          <button class="back-link" type="button" data-view-target="home-view">Back</button>
+          <p>steganography</p>
+        </nav>
+
+        <section class="intro">
+          <p class="eyebrow">Set Shaping Theory</p>
+          <h2>Reduce \(D_{\mathrm{KL}}\) with Set Shaping Theory</h2>
+          <p>
+            Select a grayscale or color image, generate or load the binary
+            sequence to embed, and compare the classical LSB insertion with
+            the best SST transformed sequence. The inserted sequence has
+            length \(N+K\).
+          </p>
+          <p>
+            The method computes the Kullback-Leibler divergence between the
+            original pixel histogram P and the modified histogram Q after
+            LSB embedding. The SST step searches for the transformed message
+            that minimizes \(D_{\mathrm{KL}}(P\parallel Q)\).
+          </p>
+        </section>
+
+        <section class="workspace" aria-label="Steganography parameters and results">
+          <form id="stego-form" class="controls">
+            <label>
+              <span>Message source</span>
+              <select id="stego-message-source" name="stego-message-source">
+                <option value="random">Random sequence</option>
+                <option value="file">Read sequence from file</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Message length N</span>
+              <input id="stego-length-n" name="stego-length-n" type="number" min="1" value="4000">
+              <small>Number of source bits. In file mode the first N bits are used.</small>
+            </label>
+
+            <label>
+              <span>Parameter K</span>
+              <input id="stego-length-k" name="stego-length-k" type="number" min="0" max="24" value="14">
+              <small>The sequence is lengthened by \(K\) bits. The number of transformations is \(2^K\).</small>
+            </label>
+
+            <label>
+              <span>Image file</span>
+              <input id="stego-image-file" name="stego-image-file" type="file" accept="image/*">
+              <small>The image is converted to grayscale values in the range 0...255.</small>
+            </label>
+
+            <label id="stego-sequence-file-label" hidden>
+              <span>Sequence file</span>
+              <input id="stego-sequence-file" name="stego-sequence-file" type="file">
+              <small>Text files with 0/1 are read as bits. Any other file is converted from bytes to bits.</small>
+            </label>
+
+            <button type="submit">Run steganography</button>
+          </form>
+
+          <div class="summary-panel" aria-live="polite">
+            <dl id="stego-summary">
+              <div>
+                <dt>Image size</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Inserted bits</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Best \(D_{\mathrm{KL}}\)</dt>
+                <dd>-</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Ready</dd>
+              </div>
+            </dl>
+            <div id="stego-progress" class="progress-bar" role="progressbar" aria-label="Steganography progress" hidden>
+              <span></span>
+              <strong>0%</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="results" aria-label="Steganography results">
+          <div class="results-heading">
+            <div>
+              <p class="eyebrow">Results</p>
+            </div>
+            <p id="stego-note">Run the simulation to compare classical LSB embedding with SST.</p>
+          </div>
+
+          <div class="formula-panel">
+            <p>
+              <strong>Kullback-Leibler divergence.</strong>
+              <span class="math-line">\[
+                D_{\mathrm{KL}}(P\parallel Q)
+                =
+                \sum_{x=0}^{255} P(x)\log_2\frac{P(x)}{Q(x)}
+              \]</span>
+            </p>
+          </div>
+
+          <div class="metrics" id="stego-metrics">
+            <article>
+              <span>Classical \(D_{\mathrm{KL}}\)</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Best SST \(D_{\mathrm{KL}}\)</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Absolute reduction</span>
+              <strong>-</strong>
+            </article>
+            <article>
+              <span>Relative reduction</span>
+              <strong>-</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Steganography slide 3">
+          <div class="slide-panel">
+            <img src="assets/steganography-slide-3.png" alt="Set Shaping Theory steganography slide">
+          </div>
+        </section>
+
+        <section class="results note-section" aria-label="Transformation algorithm credit">
+          <div class="credit-panel">
+            <p>
+              This program uses the algorithm developed by Glen Tankersley to
+              perform the transformation:
+              <a href="https://github.com/gotankersley/entropic-transform" target="_blank" rel="noopener noreferrer">https://github.com/gotankersley/entropic-transform</a>.
+            </p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
